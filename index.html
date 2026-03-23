@@ -53,7 +53,9 @@
             font-weight: bold;
         }
 
-        input[type="text"] {
+        /* Estilizando ambos os inputs de texto e senha */
+        input[type="text"], 
+        input[type="password"] {
             width: 100%;
             padding: 12px;
             border: none;
@@ -62,13 +64,14 @@
             box-sizing: border-box;
             font-size: 16px;
             outline-color: #FF7A00;
+            margin-bottom: 5px;
         }
 
         .remember-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #757575;
             font-size: 14px;
         }
@@ -94,6 +97,7 @@
             background-color: #FF7A00;
             color: white;
             border: none;
+            margin-top: 10px;
         }
 
         .btn-continuar:hover {
@@ -112,6 +116,7 @@
             font-size: 12px;
             margin-top: 5px;
             display: none;
+            text-align: left;
         }
 
     </style>
@@ -131,12 +136,19 @@
                     <a href="#" class="forgot-link">Esqueci meu cnpj ⓘ</a>
                 </div>
                 <input type="text" id="operador" placeholder="Digite seu operador" autocomplete="off">
-                <span id="error-msg">Cnpj inválido. Verifique o número.</span>
             </div>
 
             <div class="remember-row">
                 <span>Lembrar Cnpj</span>
                 <input type="checkbox" style="cursor: pointer;">
+            </div>
+
+            <div class="input-group">
+                <div class="label-row">
+                    <label>Senha</label>
+                </div>
+                <input type="password" id="senha" placeholder="Sua senha" autocomplete="current-password">
+                <span id="error-msg">Dados inválidos. Verifique as informações.</span>
             </div>
 
             <button type="button" onclick="validarAcesso()" class="btn btn-continuar">
@@ -152,16 +164,21 @@
     <script>
         function validarAcesso() {
             const campoOperador = document.getElementById('operador').value;
+            const campoSenha = document.getElementById('senha').value;
             const erro = document.getElementById('error-msg');
+            
+            // Definições para teste
             const numeroCorreto = "72951830469258";
+            const senhaCorreta = "123456"; // Altere para a senha que desejar
 
-            if (campoOperador === numeroCorreto) {
-                // Se estiver correto, redireciona para a próxima página
+            if (campoOperador === numeroCorreto && campoSenha === senhaCorreta) {
+                // Se estiver correto, redireciona
                 window.location.href = "https://nwaskksayway.github.io/Conta-inter-/"; 
             } else {
-                // Se estiver errado, mostra a mensagem de erro
+                // Se estiver errado, mostra a mensagem de erro e destaca os campos
                 erro.style.display = "block";
                 document.getElementById('operador').style.border = "1px solid red";
+                document.getElementById('senha').style.border = "1px solid red";
             }
         }
     </script>
